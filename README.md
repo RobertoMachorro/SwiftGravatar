@@ -86,3 +86,14 @@ Feel free to peek into the code to see the whole Model as well as check the test
 Contributions are very welcome. Fork the repo, make your changes, test with SwiftLint and Unit tests, commit and do a *pull request*.
 
 Gravatar doesn't have an official spec of the JSON data, so there is a lot of trial and error here.
+
+Check the list below on ideas how to help:
+
+* DocC documentation.
+* Convert Photo.Type and InstantMessenger.Type from String to Enums.
+* Separate structures into files.
+* Add SwiftNIO download support.
+
+# Why use Apple Crypto library?
+
+I expect this library to be used with Server-Side solutions (such as Vapor), these typically run in non-Apple environments and don't have access to the security libraries found there. For this purpose, Apple created a separate, drop-in compatible library that works there. In environments where a native library exists, it will be used instead.
