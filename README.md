@@ -44,12 +44,42 @@ let (data, _) = try await URLSession.shared.data(from: url)
 let profile = try JSONDecoder().decode(GravatarProfile.self, from: data)
 ```
 
+The data will be stored in the GravatarProfile model:
+
+```swift
+public struct GravatarProfile: Decodable {
+	public let entry: [Entry]
+
+	public struct Entry: Decodable {
+		public let id: String?
+		public let hash: String
+		public let requestHash: String
+		public let profileUrl: String?
+		public let preferredUsername: String?
+		public let thumbnailUrl: String?
+		public let photos: [Photo]?
+		public let name: Name?
+		public let displayName: String?
+		public let pronouns: String?
+		public let aboutMe: String?
+		public let currentLocation: String?
+		public let emails: [Email]?
+		public let ims: [InstantMessenger]?
+		public let accounts: [Account]?
+		public let urls: [Websites]?
+	}
+// ... truncated ...
+}
+```
+
 An easy converter from e-mail to Gravatar URL can be accessed as follows:
 
 ```swift
 let myemailaddress = GravatarProfile.getProfileAddress(using: "myemailaddress@example.com")
 // "https://en.gravatar.com/0bc83cb571cd1c50ba6f3e8a78ef1346.json"
 ```
+
+Feel free to peek into the code to see the whole Model as well as check the tests for usage options.
 
 # Contributing
 
