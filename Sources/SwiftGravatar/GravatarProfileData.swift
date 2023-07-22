@@ -8,6 +8,11 @@
 import Foundation
 import Crypto
 
+enum GravatarBoolean: String, Decodable {
+	case yes = "true"
+	case no = "false"
+}
+
 struct GravatarName: Decodable {
 	let givenName: String
 	let familyName: String
@@ -15,7 +20,7 @@ struct GravatarName: Decodable {
 }
 
 struct GravatarEmail: Decodable {
-	let primary: String // TODO: Decode to Bool
+	let primary: GravatarBoolean
 	let value: String
 }
 
@@ -24,17 +29,17 @@ struct GravatarAccount: Decodable {
 	let display: String
 	let url: String
 	let username: String
-	let verified: String // TODO: Decode to Bool
+	let verified: GravatarBoolean
 	let shortname: String
 }
 
 struct GravatarPhoto: Decodable {
 	let value: String
-	let type: String // TODO: Decode to Enum
+	let type: String // WISHLIST: Build Enum with all types
 }
 
 struct GravatarIM: Decodable {
-	let type: String // TODO: Decode to Enum
+	let type: String // WISHLIST: Build Enum with all types
 	let value: String
 }
 
@@ -44,7 +49,7 @@ struct GravatarURL: Decodable {
 }
 
 struct GravatarProfileEntry: Decodable {
-	//let id: String
+	// let id: String
 	let hash: String
 	let requestHash: String
 	let profileUrl: String
