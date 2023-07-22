@@ -8,7 +8,7 @@
 import Foundation
 import Crypto
 
-struct GravatarProfile: Decodable {
+public struct GravatarProfile: Decodable {
 	let entry: [Entry]
 
 	struct Entry: Decodable {
