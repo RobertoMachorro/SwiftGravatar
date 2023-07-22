@@ -11,7 +11,7 @@ import Crypto
 public struct GravatarProfile: Decodable {
 	let entry: [Entry]
 
-	struct Entry: Decodable {
+	public struct Entry: Decodable {
 		let id: String?
 		let hash: String
 		let requestHash: String
@@ -30,28 +30,28 @@ public struct GravatarProfile: Decodable {
 		let urls: [Websites]?
 	}
 
-	struct Photo: Decodable {
+	public struct Photo: Decodable {
 		let value: String
 		let type: String // WISHLIST: Build Enum with all types
 	}
 
-	struct Name: Decodable {
+	public struct Name: Decodable {
 		let givenName: String?
 		let familyName: String?
 		let formatted: String?
 	}
 
-	struct Email: Decodable {
+	public struct Email: Decodable {
 		let primary: BooleanString
 		let value: String
 	}
 
-	struct InstantMessenger: Decodable {
+	public struct InstantMessenger: Decodable {
 		let type: String // WISHLIST: Build Enum with all types
 		let value: String
 	}
 
-	struct Account: Decodable {
+	public struct Account: Decodable {
 		let domain: String
 		let display: String
 		let url: String
@@ -60,13 +60,13 @@ public struct GravatarProfile: Decodable {
 		let shortname: String
 	}
 
-	struct Websites: Decodable {
+	public struct Websites: Decodable {
 		let value: String
 		let title: String
 	}
 
 	// WORKAROUND: Gravatar sends Booleans as Strings, which bypasses decoding.
-	enum BooleanString: String, Decodable {
+	public enum BooleanString: String, Decodable {
 		case yes = "true"
 		case no = "false" // swiftlint:disable:this identifier_name
 	}
