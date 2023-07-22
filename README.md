@@ -8,7 +8,9 @@ A Swift library for Gravatar Profile data access.
 
 [Gravatar](https://gravatar.com) is a well known service for centralizing profiles and avatar images. This library allows applications to refer to Gravatar's data instead of reinventing the wheel.
 
-# How to Use
+Reach out in [Discussions](https://github.com/RobertoMachorro/SwiftGravatar/discussions) if you have any questions. Report bugs to [Issues](https://github.com/RobertoMachorro/SwiftGravatar/issues).
+
+# Using
 
 Add the SwiftGravatar package to your project or via Package.swift using the address:
 
@@ -48,3 +50,9 @@ An easy converter from e-mail to Gravatar URL can be accessed as follows:
 let myemailaddress = GravatarProfile.getProfileAddress(using: "myemailaddress@example.com")
 // "https://en.gravatar.com/0bc83cb571cd1c50ba6f3e8a78ef1346.json"
 ```
+
+# Contributing
+
+Contributions are very welcome. Fork the repo, make your changes, test with SwiftLint and Unit tests, commit and do a *pull request*.
+
+Gravatar doesn't have an official spec of the JSON data, so there is a lot of trial and error here.
