@@ -20,18 +20,20 @@ final class SwiftGravatarTests: XCTestCase {
 			// Check Profile for personal info
 			XCTAssertEqual(entry.preferredUsername, "robertomachorro")
 			XCTAssertEqual(entry.profileUrl, "https://gravatar.com/robertomachorro")
-			XCTAssertEqual(entry.name.formatted, "Roberto Machorro")
+			XCTAssertNotNil(entry.name)
+			XCTAssertEqual(entry.name?.formatted, "Roberto Machorro")
 
 			// Check Profile for photos / avatars
-			XCTAssertNotNil(entry.photos.first)
-			XCTAssertEqual(entry.photos.first?.type, "thumbnail")
+			XCTAssertNotNil(entry.photos?.first)
+			XCTAssertEqual(entry.photos?.first?.type, "thumbnail")
 
 			// Check Profile primary contact, test BooleanString
-			XCTAssertEqual(entry.emails.count, 1)
-			XCTAssertEqual(entry.emails.first?.primary, .yes)
+			XCTAssertNotNil(entry.emails?.first)
+			XCTAssertEqual(entry.emails?.count, 1)
+			XCTAssertEqual(entry.emails?.first?.primary, .yes)
 
 			// Check Profile for social media accounts
-			XCTAssert(entry.accounts.count > 0)
+			XCTAssert(entry.accounts?.count ?? 0 > 0)
 		} else {
 			XCTFail("No entries to test.")
 		}
