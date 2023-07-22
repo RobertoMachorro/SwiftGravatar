@@ -2,6 +2,11 @@ import XCTest
 @testable import SwiftGravatar
 
 final class SwiftGravatarTests: XCTestCase {
+	func testGetProfileAddress() {
+		let myemailaddress = GravatarProfile.getProfileAddress(using: "myemailaddress@example.com")
+		XCTAssertEqual(myemailaddress, "https://en.gravatar.com/0bc83cb571cd1c50ba6f3e8a78ef1346.json")
+	}
+
 	func testParseGravatarProfileData() async throws {
 		// Request JSON Profile Data
 		// Docs: https://en.gravatar.com/site/implement/profiles/json/

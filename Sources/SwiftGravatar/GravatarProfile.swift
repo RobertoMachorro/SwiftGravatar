@@ -73,6 +73,15 @@ struct GravatarProfile: Decodable {
 }
 
 extension GravatarProfile {
+	// Converts e-mail address to a Gravatar web address.
+	static func getProfileAddress(using email: String) -> String? {
+		guard let emailData = email.data(using: .utf8) else {
+			return nil
+		}
+		let emailMD5 = Insecure.MD5.hash(data: emailData).map { String(format: "%02hhx", $0) }.joined()
+		return "https://en.gravatar.com/\(emailMD5).json"
+	}
+
 	/* SWIFTNIO
 	static func get(using email: String, on request: Request) -> EventLoopFuture<GravatarProfile> {
 		guard let emailData = email.data(using: .utf8) else {
