@@ -82,6 +82,22 @@ extension GravatarProfile {
 		return "https://en.gravatar.com/\(emailMD5).json"
 	}
 
+	// Request JSON Profile Data from Gravatar
+	// Docs: https://en.gravatar.com/site/implement/profiles/json/
+	static func getProfile(using email: String) async throws -> GravatarProfile? {
+		guard let address = getProfileAddress(using: email), let url = URL(string: address) else {
+			return nil
+		}
+		do {
+			let (data, _) = try await URLSession.shared.data(from: url)
+			let profile = try JSONDecoder().decode(GravatarProfile.self, from: data)
+			return profile
+		} catch {
+			// Silent fail
+		}
+		return nil
+	}
+
 	/* SWIFTNIO
 	static func get(using email: String, on request: Request) -> EventLoopFuture<GravatarProfile> {
 		guard let emailData = email.data(using: .utf8) else {

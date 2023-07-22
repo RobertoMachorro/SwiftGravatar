@@ -7,6 +7,32 @@ final class SwiftGravatarTests: XCTestCase {
 		XCTAssertEqual(myemailaddress, "https://en.gravatar.com/0bc83cb571cd1c50ba6f3e8a78ef1346.json")
 	}
 
+	func testGetValidProfile() async throws {
+		guard let profile = try await GravatarProfile.getProfile(using: "myemailaddress@example.com") else {
+			return XCTFail("Unable to retrieve sample profile")
+		}
+		if let entry = profile.entry.first {
+			// Check Profile for personal info
+			XCTAssertEqual(entry.preferredUsername, "grevator")
+			XCTAssertEqual(entry.profileUrl, "https://gravatar.com/grevator")
+
+			// Check Profile for photos / avatars
+			XCTAssertTrue(entry.thumbnailUrl?.count ?? 0 > 0)
+			XCTAssertNotNil(entry.photos?.first)
+			XCTAssertEqual(entry.photos?.first?.type, "thumbnail")
+
+			// Check Profile for websites
+			XCTAssertEqual(entry.urls?.count ?? -1, 0)
+		} else {
+			XCTFail("No entries to test.")
+		}
+	}
+
+	func testGetInvalidProfile() async throws {
+		let fakeInvalid = try await GravatarProfile.getProfile(using: "fake-invalid@example.com")
+		XCTAssertNil(fakeInvalid)
+	}
+
 	func testParseGravatarProfileData() async throws {
 		// Request JSON Profile Data
 		// Docs: https://en.gravatar.com/site/implement/profiles/json/
