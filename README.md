@@ -6,6 +6,8 @@
 # SwiftGravatar
 A Swift library for Gravatar Profile data access.
 
+[Gravatar](https://gravatar.com) is a well known service for centralizing profiles and avatar images. This library allows applications to refer to Gravatar's data instead of reinventing the wheel.
+
 # How to Use
 
 Add the SwiftGravatar package to your project or via Package.swift using the address:
