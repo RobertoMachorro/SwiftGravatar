@@ -9,7 +9,7 @@ final class SwiftGravatarTests: XCTestCase {
 			return XCTFail("Unable to parse Gravatar URL")
 		}
 		let (data, _) = try await URLSession.shared.data(from: url)
-		let profile = try JSONDecoder().decode(GravatarProfileData.self, from: data)
+		let profile = try JSONDecoder().decode(GravatarProfile.self, from: data)
 
 		if let entry = profile.entry.first {
 			// Check Profile for personal info
@@ -20,6 +20,10 @@ final class SwiftGravatarTests: XCTestCase {
 			// Check Profile for photos / avatars
 			XCTAssertNotNil(entry.photos.first)
 			XCTAssertEqual(entry.photos.first?.type, "thumbnail")
+
+			// Check Profile primary contact, test BooleanString
+			XCTAssertEqual(entry.emails.count, 1)
+			XCTAssertEqual(entry.emails.first?.primary, .yes)
 
 			// Check Profile for social media accounts
 			XCTAssert(entry.accounts.count > 0)
