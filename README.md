@@ -1,3 +1,7 @@
+[![ci](https://github.com/RobertoMachorro/SwiftGravatar/actions/workflows/ci.yml/badge.svg)](https://github.com/RobertoMachorro/SwiftGravatar/actions/workflows/ci.yml)
+![GitHub](https://img.shields.io/github/license/RobertoMachorro/SwiftGravatar)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://vshymanskyy.github.io/StandWithUkraine)
+
 # SwiftGravatar
 A Swift library for Gravatar Profile data access.
 
