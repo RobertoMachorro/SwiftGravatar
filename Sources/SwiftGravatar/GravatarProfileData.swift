@@ -10,7 +10,7 @@ import Crypto
 
 enum GravatarBoolean: String, Decodable {
 	case yes = "true"
-	case no = "false"
+	case no = "false" // swiftlint:disable:this identifier_name
 }
 
 struct GravatarName: Decodable {
