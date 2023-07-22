@@ -28,7 +28,7 @@ struct GravatarAccount: Decodable {
 	let shortname: String
 }
 
-struct GravatarPhotos: Decodable {
+struct GravatarPhoto: Decodable {
 	let value: String
 	let type: String // TODO: Decode to Enum
 }
@@ -50,7 +50,7 @@ struct GravatarProfileEntry: Decodable {
 	let profileUrl: String
 	let preferredUsername: String
 	let thumbnailUrl: String
-	let photos: [GravatarPhotos]
+	let photos: [GravatarPhoto]
 	let name: GravatarName
 	let displayName: String
 	let pronouns: String
@@ -62,11 +62,11 @@ struct GravatarProfileEntry: Decodable {
 	let urls: [GravatarURL]
 }
 
-struct GravatarProfile: Decodable {
+struct GravatarProfileData: Decodable {
 	let entry: [GravatarProfileEntry]
 }
 
-extension GravatarProfile {
+extension GravatarProfileData {
 	/* SWIFTNIO
 	static func get(using email: String, on request: Request) -> EventLoopFuture<GravatarProfile> {
 		guard let emailData = email.data(using: .utf8) else {
