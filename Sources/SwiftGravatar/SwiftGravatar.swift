@@ -11,6 +11,10 @@ import Crypto
 public struct GravatarProfile: Decodable {
 	public let entry: [Entry]
 
+	public init(entry: [Entry]) {
+		self.entry = entry
+	}
+
 	public struct Entry: Decodable {
 		public let id: String?
 		public let hash: String
