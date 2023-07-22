@@ -12,57 +12,57 @@ public struct GravatarProfile: Decodable {
 	public let entry: [Entry]
 
 	public struct Entry: Decodable {
-		let id: String?
-		let hash: String
-		let requestHash: String
-		let profileUrl: String?
-		let preferredUsername: String?
-		let thumbnailUrl: String?
-		let photos: [Photo]?
-		let name: Name?
-		let displayName: String?
-		let pronouns: String?
-		let aboutMe: String?
-		let currentLocation: String?
-		let emails: [Email]?
-		let ims: [InstantMessenger]?
-		let accounts: [Account]?
-		let urls: [Websites]?
+		public let id: String?
+		public let hash: String
+		public let requestHash: String
+		public let profileUrl: String?
+		public let preferredUsername: String?
+		public let thumbnailUrl: String?
+		public let photos: [Photo]?
+		public let name: Name?
+		public let displayName: String?
+		public let pronouns: String?
+		public let aboutMe: String?
+		public let currentLocation: String?
+		public let emails: [Email]?
+		public let ims: [InstantMessenger]?
+		public let accounts: [Account]?
+		public let urls: [Websites]?
 	}
 
 	public struct Photo: Decodable {
-		let value: String
-		let type: String // WISHLIST: Build Enum with all types
+		public let value: String
+		public let type: String // WISHLIST: Build Enum with all types
 	}
 
 	public struct Name: Decodable {
-		let givenName: String?
-		let familyName: String?
-		let formatted: String?
+		public let givenName: String?
+		public let familyName: String?
+		public let formatted: String?
 	}
 
 	public struct Email: Decodable {
-		let primary: BooleanString
-		let value: String
+		public let primary: BooleanString
+		public let value: String
 	}
 
 	public struct InstantMessenger: Decodable {
-		let type: String // WISHLIST: Build Enum with all types
-		let value: String
+		public let type: String // WISHLIST: Build Enum with all types
+		public let value: String
 	}
 
 	public struct Account: Decodable {
-		let domain: String
-		let display: String
-		let url: String
-		let username: String
-		let verified: BooleanString
-		let shortname: String
+		public let domain: String
+		public let display: String
+		public let url: String
+		public let username: String
+		public let verified: BooleanString
+		public let shortname: String
 	}
 
 	public struct Websites: Decodable {
-		let value: String
-		let title: String
+		public let value: String
+		public let title: String
 	}
 
 	// WORKAROUND: Gravatar sends Booleans as Strings, which bypasses decoding.
