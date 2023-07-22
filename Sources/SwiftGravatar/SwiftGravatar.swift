@@ -9,7 +9,7 @@ import Foundation
 import Crypto
 
 public struct GravatarProfile: Decodable {
-	let entry: [Entry]
+	public let entry: [Entry]
 
 	public struct Entry: Decodable {
 		let id: String?
