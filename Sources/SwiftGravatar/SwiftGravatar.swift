@@ -87,7 +87,7 @@ extension GravatarProfile {
 	}
 
 	// WISHLIST: Port getProfile to FoundationNetwork based platforms, URLSession compatibility
-	#if !canImport(FoundationNetwork)
+#if !os(Linux)
 	// Request JSON Profile Data from Gravatar
 	// Docs: https://en.gravatar.com/site/implement/profiles/json/
 	public static func getProfile(using email: String) async throws -> GravatarProfile? {
@@ -103,7 +103,7 @@ extension GravatarProfile {
 		}
 		return nil
 	}
-	#endif
+#endif
 
 	/* SWIFTNIO
 	static func get(using email: String, on request: Request) -> EventLoopFuture<GravatarProfile> {
