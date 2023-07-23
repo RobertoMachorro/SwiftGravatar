@@ -117,9 +117,11 @@ Gravatar doesn't have an official spec of the JSON data, so there is a lot of tr
 Check the list below on ideas how to help:
 
 * DocC documentation.
+* Port getProfile to FoundationNetwork based platforms (URLSession compatibility).
 * Convert Photo.Type and InstantMessenger.Type from String to Enums.
+* Support for Github Codespaces (Linux based).
 * Separate structures into files.
-* Add SwiftNIO download support.
+* Add built-in SwiftNIO download support.
 
 # Why use Apple Crypto library?
 
