@@ -12,11 +12,17 @@ Reach out in [Discussions](https://github.com/RobertoMachorro/SwiftGravatar/disc
 
 # Using
 
+## Setup
+
 Add the SwiftGravatar package to your project or via Package.swift using the address:
 
 https://github.com/RobertoMachorro/SwiftGravatar
 
 <img width="832" alt="image" src="https://github.com/RobertoMachorro/SwiftGravatar/assets/7190436/ba170546-30f6-482b-8c0d-eb4d055e8eaa">
+
+Feel free to peek into the code to see the whole Model as well as check the tests for usage options.
+
+## Async/Await
 
 Fetching the profile from the server can be done many ways, the easiest is to use the convenience function *GravatarProfile.getProfile*:
 
@@ -43,6 +49,27 @@ guard let url = URL(string: "https://en.gravatar.com/632d2f3abe7be4db174da5cb276
 let (data, _) = try await URLSession.shared.data(from: url)
 let profile = try JSONDecoder().decode(GravatarProfile.self, from: data)
 ```
+
+## Vapor / SwiftNIO
+
+The request client can be leveraged to make a call to Gravatar:
+
+```swift
+func get(using email: String, on request: Request) -> EventLoopFuture<GravatarProfile> {
+	guard let gravatarAddy = GravatarProfile.getProfileAddress(using: email) else {
+		return request.eventLoop.makeFailedFuture(Abort(.badRequest))
+	}
+	return request.client.get(URI(string: gravatarAddy))
+		.flatMapThrowing { response in
+			guard response.status == .ok else {
+				return GravatarProfile(entry: [])
+			}
+			return try response.content.decode(GravatarProfile.self)
+		}
+}
+```
+
+## Model / Decoding
 
 The data will be stored in the GravatarProfile model:
 
@@ -72,14 +99,14 @@ public struct GravatarProfile: Decodable {
 }
 ```
 
+## Just the URL, thanks
+
 An easy converter from e-mail to Gravatar URL can be accessed as follows:
 
 ```swift
 let myemailaddress = GravatarProfile.getProfileAddress(using: "myemailaddress@example.com")
 // "https://en.gravatar.com/0bc83cb571cd1c50ba6f3e8a78ef1346.json"
 ```
-
-Feel free to peek into the code to see the whole Model as well as check the tests for usage options.
 
 # Contributing
 
