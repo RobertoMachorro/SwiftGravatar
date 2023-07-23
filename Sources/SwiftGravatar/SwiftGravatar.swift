@@ -6,9 +6,6 @@
 //
 
 import Foundation
-#if canImport(FoundationNetworking)
-import FoundationNetworking
-#endif
 import Crypto
 
 public struct GravatarProfile: Decodable {
@@ -89,6 +86,8 @@ extension GravatarProfile {
 		return "https://en.gravatar.com/\(emailMD5).json"
 	}
 
+	// TODO: Port getProfile to FoundationNetwork based platforms, URLSession compatibility
+	#if !canImport(FoundationNetwork)
 	// Request JSON Profile Data from Gravatar
 	// Docs: https://en.gravatar.com/site/implement/profiles/json/
 	public static func getProfile(using email: String) async throws -> GravatarProfile? {
@@ -104,6 +103,7 @@ extension GravatarProfile {
 		}
 		return nil
 	}
+	#endif
 
 	/* SWIFTNIO
 	static func get(using email: String, on request: Request) -> EventLoopFuture<GravatarProfile> {
