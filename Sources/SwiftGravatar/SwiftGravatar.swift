@@ -86,7 +86,7 @@ extension GravatarProfile {
 		return "https://en.gravatar.com/\(emailMD5).json"
 	}
 
-	// TODO: Port getProfile to FoundationNetwork based platforms, URLSession compatibility
+	// WISHLIST: Port getProfile to FoundationNetwork based platforms, URLSession compatibility
 	#if !canImport(FoundationNetwork)
 	// Request JSON Profile Data from Gravatar
 	// Docs: https://en.gravatar.com/site/implement/profiles/json/
